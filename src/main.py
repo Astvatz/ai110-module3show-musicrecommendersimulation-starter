@@ -51,15 +51,29 @@ def format_recommendations(
     return "\n".join(lines)
 
 
+USER_PROFILES: list[tuple[str, dict]] = [
+    (
+        "High-Energy Pop",
+        {"genre": "pop", "mood": "happy", "energy": 0.9},
+    ),
+    (
+        "Chill Lofi",
+        {"genre": "lofi", "mood": "chill", "energy": 0.35, "likes_acoustic": True},
+    ),
+    (
+        "Deep Intense Rock",
+        {"genre": "rock", "mood": "intense", "energy": 0.9, "likes_acoustic": False},
+    ),
+]
+
+
 def main() -> None:
     songs = load_songs("data/songs.csv")
 
-    # Starter example profile
-    user_prefs = {"genre": "pop", "mood": "happy", "energy": 0.8}
-
-    recommendations = recommend_songs(user_prefs, songs, k=5)
-
-    print(format_recommendations(recommendations, user_prefs))
+    for profile_name, user_prefs in USER_PROFILES:
+        recommendations = recommend_songs(user_prefs, songs, k=5)
+        print(f"  [{profile_name}]")
+        print(format_recommendations(recommendations, user_prefs))
 
 
 if __name__ == "__main__":

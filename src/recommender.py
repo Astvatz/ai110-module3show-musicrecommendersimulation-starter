@@ -72,9 +72,10 @@ def load_songs(csv_path: str) -> List[Dict]:
     return songs
 
 # Algorithm Recipe (Phase 2): point weights for scoring
-GENRE_MATCH_POINTS = 2.0
+# Weight Shift experiment: genre halved (2.0 -> 1.0), energy doubled (2.0 -> 4.0)
+GENRE_MATCH_POINTS = 1.0
 MOOD_MATCH_POINTS = 2.0
-ENERGY_MAX_POINTS = 2.0
+ENERGY_MAX_POINTS = 4.0
 ACOUSTIC_MATCH_POINTS = 1.0
 ACOUSTIC_MISMATCH_PENALTY = -0.5
 ACOUSTIC_THRESHOLD = 0.5
